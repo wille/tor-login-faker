@@ -1,7 +1,7 @@
 import requests
 
 def scrapeNodes(amount=-1):
-    r = requests.get("https://check.torproject.org/exit-addresses", timeout=15)
+    r = requests.get("https://check.torproject.org/exit-addresses")
 
     fingerprints = []
     
