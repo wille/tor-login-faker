@@ -5,7 +5,7 @@ Posts fake unique login information to a fake website through all possible tor e
 ## Requirements
 
 - requests, pysocks and stem, can be installed using "pip install requests stem pysocks"
-- Python 2 (currently, might change)
+- Python 3 (currently, might change)
 
 ## Thanks to
 

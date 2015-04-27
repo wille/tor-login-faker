@@ -6,7 +6,7 @@ def scrapeNodes(amount=-1):
 
     fingerprints = []
     
-    for l in r.content.split("\n"):
+    for l in r.content.decode().split("\n"):
         if l.startswith("ExitNode "):
             l = l[10:].strip()
             print("Found node " + l)
