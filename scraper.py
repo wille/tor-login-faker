@@ -8,7 +8,7 @@ def scrapeNodes(amount=-1):
     
     for l in r.content.decode().split("\n"):
         if l.startswith("ExitNode "):
-            l = l[10:].strip()
+            l = l[9:].strip()
             print("Found node " + l)
             fingerprints.append(l)
             
@@ -19,5 +19,5 @@ if __name__ == "__main__":
     
     with open("nodes.txt", mode="w") as file:
         for l in fingerprints:
-            file.write(l + os.sep)
+            file.write(l + os.linesep)
             
