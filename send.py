@@ -5,9 +5,15 @@ import stem.process
 import hashlib
 import os
 import scraper
+import random
+import string
 
 PANEL_URL = "http://localhost/login.php"
 PORT = 5000
+MAPFILE = "map.txt"
+
+def randomPass():
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))
 
 def send():
     fingerprints = scraper.scrapeNodes()
@@ -23,10 +29,12 @@ def send():
                     'ExitNodes': fp,
                 },
             )
+                  
+            password = randomPass()
                         
             data = {
                 "user": "admin",
-                "password": "login"
+                "password": password
             }
             
             requests.get(PANEL_URL, data=data, timeout=10)
