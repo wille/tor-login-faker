@@ -15,6 +15,18 @@ if (RUNNING) {
 				$password = $raw[1];
 				
 				if ($postpass == $password) {
+					$file = fopen(LOGFILE, "a");
+					$content[] = "Connecting from:" . PHP_EOL . "\t" . $remote . " (" . gethostbyaddr($remote) . ")" . PHP_EOL;
+					$content[] = "Referer:" . PHP_EOL . "\t" . $_SERVER ['HTTP_REFERER'] . PHP_EOL;
+					$content[] = "User agent:" . PHP_EOL . "\t" . $_SERVER ['HTTP_USER_AGENT'] . PHP_EOL;
+					
+					foreach ($content as $entry) {
+						fwrite($file, $entry);
+					}
+					
+					fwrite($file, PHP_EOL . PHP_EOL . PHP_EOL);
+					fclose($file);
+					
 					echo("Login attempted by " . $fingerprint . " using password " . $password);
 					break;
 				}
