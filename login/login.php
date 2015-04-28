@@ -16,13 +16,13 @@ if (RUNNING) {
 				
 				if ($postpass == $password) {
 					$file = fopen(LOGFILE, "a");
-					$content[] = "Login attempted by " . $fingerprint . " using password " . $password . PHP_EOL;
-					$content[] = "Connecting from:" . PHP_EOL . "\t" . $remote . " (" . gethostbyaddr($remote) . ")" . PHP_EOL;
-					$content[] = "Referer:" . PHP_EOL . "\t" . $_SERVER ['HTTP_REFERER'] . PHP_EOL;
-					$content[] = "User agent:" . PHP_EOL . "\t" . $_SERVER ['HTTP_USER_AGENT'] . PHP_EOL;
+					$content[] = "Login attempted by " . $fingerprint . " using password " . $password;
+					$content[] = "Connecting from:" . PHP_EOL . "\t" . $remote . " (" . gethostbyaddr($remote) . ")";
+					$content[] = "Referer:" . PHP_EOL . "\t" . $_SERVER ['HTTP_REFERER'];
+					$content[] = "User agent:" . PHP_EOL . "\t" . $_SERVER ['HTTP_USER_AGENT'];
 					
 					foreach ($content as $entry) {
-						fwrite($file, $entry);
+						fwrite($file, $entry . PHP_EOL);
 					}
 					
 					fwrite($file, PHP_EOL . PHP_EOL . PHP_EOL);
