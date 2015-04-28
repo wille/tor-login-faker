@@ -12,11 +12,22 @@ PANEL_URL = "http://localhost/login.php"
 PORT = 5000
 MAPFILE = "map.txt"
 
+
+def getaddrinfo(*args):
+    return [(socket.AF_INET, socket.SOCK_STREAM, 6, '', (args[0], args[1]))]
+
+def loadProxy():
+    socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, "127.0.0.1", PORT)
+    socket.socket = socks.socksocket
+    socket.getaddrinfo = getaddrinfo
+    
 def randomPass():
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))
 
 def send():
     fingerprints = scraper.scrapeNodes()
+    loadProxy()
+
     file = open(MAPFILE, mode="a")
     
     for fp in fingerprints:
