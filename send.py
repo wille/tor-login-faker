@@ -17,6 +17,7 @@ def randomPass():
 
 def send():
     fingerprints = scraper.scrapeNodes()
+    file = open(MAPFILE, mode="a")
     
     for fp in fingerprints:
         global tor_process
@@ -39,12 +40,15 @@ def send():
             
             requests.get(PANEL_URL, data=data, timeout=10)
             
+            file.write(fp + "=" + password + os.linesep)
+            
             print("Completed " + fp)
             
             tor_process.kill()
         except Exception as e: 
             print(str(e))
             tor_process.kill()
-
+            
+    file.close()
 if __name__ == "__main__":
     send()
