@@ -1,6 +1,15 @@
 # tor-login-faker
 
-Posts fake unique login information to a fake website through all possible tor exit nodes, and later waits for login attempt with these unique credentials and detects which exit node that sniffed the traffic
+Posts fake unique login information to a fake website/server over an unencrypted connection through all possible tor exit nodes, and later waits for login attempt with these unique credentials and detects which exit node that sniffed the traffic
+
+## Modules
+
+- HTTP POST login to fake website
+
+### Planned modules
+
+- FTP
+- IMAP
 
 ## Requirements
 
